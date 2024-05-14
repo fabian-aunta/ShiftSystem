@@ -30,7 +30,6 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes agregar la lógica para manejar el envío del formulario.
         console.log(formData);
     };
 

@@ -3,20 +3,13 @@ import "./Register.css";
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: "",
+        org: "",
         firstName: "",
         lastName: "",
         documentNumber: "",
         password: "",
         email: "",
-        phone: "",
-        birthDate: "",
-        address: "",
-        branch: "",
-        preferredDateTime: "",
-        serviceRequested: "",
-        comments: "",
-        communicationPreference: "",
+        adress: "",
         termsAccepted: false,
     });
 
@@ -37,8 +30,8 @@ const Register = () => {
         <div className="register">
             <form onSubmit={handleSubmit} className="register-form">
                 <h1>Registrarse</h1>
-                <label htmlFor="username">Usuario:</label>
-                <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+                <label htmlFor="username">Organizacion:</label>
+                <input type="text" name="org" value={formData.username} onChange={handleChange} required />
                 
                 <label htmlFor="firstName">Nombres:</label>
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
@@ -55,8 +48,8 @@ const Register = () => {
                 <label htmlFor="email">Correo Electrónico:</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required />
                 
-                <label htmlFor="phone">Número de Teléfono:</label>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+                <label htmlFor="phone">Direccion:</label>
+                <input type="tel" name="adress" value={formData.phone} onChange={handleChange} required />
                 
                 <label htmlFor="termsAccepted">
                     <input type="checkbox" name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange} required />

@@ -2,7 +2,7 @@
     border: 1px solid black;
     width: 400px;
     height: 500px;
-    background-color: aqua;
+    background-color: #006666;
     color: white;
     border-radius: 20px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75);
@@ -25,7 +25,6 @@ form {
     padding: 40px;
     width: 100%;
     height: 100%;
-    backdrop-filter: brightness(40%);
     flex-direction: column;
     display: flex;
     gap: 5px;
@@ -58,13 +57,34 @@ input {
     color: white;
 }
 
+
 button {
-    background: rgb(45, 126, 231);
+    background: #007bff;
     height: 40px;
     line-height: 40px;
     border-radius: 40px;
+    font-size: 18px;
     border: none;
     margin: 10px 0px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     color: white;
 }
+
+.login-link {
+    text-align: center;
+    margin-top: 10px;
+}
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.login-link img {
+    border: none;
+    margin: 10px;
+}
+

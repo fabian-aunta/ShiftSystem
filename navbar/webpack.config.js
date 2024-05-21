@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3001/",
+    publicPath: "http://localhost:3003/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3001,
+    port: 3003,
     historyApiFallback: true,
   },
 
@@ -35,24 +35,18 @@ module.exports = (_, argv) => ({
         use: {
           loader: "babel-loader",
         },
-      },{
-        test: /\.(jpg|png|svg)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            limit: 25000
-          }
-        }
-      }
+      },
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "login",
+      name: "navbar",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Navbar": "./src/components/NavbarComponent.jsx"
+      },
       shared: {
         ...deps,
         react: {

@@ -6,7 +6,7 @@ const CurrentShift = () => {
 
   useEffect(() => {
     const fetchCurrentShift = async () => {
-      const response = await fetch("/current-shift.json"); // Ajusta la URL según tu API o archivo JSON
+      const response = await fetch("/current-shift.json");
       const data = await response.json();
       setCurrentShift(data);
     };
@@ -25,11 +25,8 @@ const CurrentShift = () => {
     <div className="current-shift-container">
       <h1>Turno Actual</h1>
       <div className="shift-details">
-        <p>ID: {currentShift.id}</p>
+        <p>ID del Turno: {currentShift.id}</p>
         <p>Empleado: {currentShift.employee}</p>
-        <p>Fecha: {currentShift.date}</p>
-        <p>Hora de Inicio: {currentShift.startTime}</p>
-        <p>Hora de Fin: {currentShift.endTime}</p>
       </div>
     </div>
   );

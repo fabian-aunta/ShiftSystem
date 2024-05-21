@@ -30,32 +30,32 @@ const Register = () => {
         <div className="register">
             <form onSubmit={handleSubmit} className="register-form">
                 <h1>Registrarse</h1>
-                <label htmlFor="username">Organizacion:</label>
-                <input type="text" name="org" value={formData.username} onChange={handleChange} required />
-                
+                <label htmlFor="username">Organización:</label>
+                <input type="text" name="org" value={formData.org} onChange={handleChange} required />
+
                 <label htmlFor="firstName">Nombres:</label>
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-                
+
                 <label htmlFor="lastName">Apellidos:</label>
                 <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-                
+
                 <label htmlFor="documentNumber">Número de documento:</label>
                 <input type="text" name="documentNumber" value={formData.documentNumber} onChange={handleChange} required />
-                
+
                 <label htmlFor="password">Contraseña:</label>
                 <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-                
+
                 <label htmlFor="email">Correo Electrónico:</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-                
-                <label htmlFor="phone">Direccion:</label>
-                <input type="tel" name="adress" value={formData.phone} onChange={handleChange} required />
-                
+
+                <label htmlFor="adress">Dirección:</label>
+                <input type="text" name="adress" value={formData.adress} onChange={handleChange} required />
+
                 <label htmlFor="termsAccepted">
                     <input type="checkbox" name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange} required />
                     Acepto los Términos y Condiciones
                 </label>
-                
+
                 <button type="submit">Registrarme</button>
             </form>
         </div>

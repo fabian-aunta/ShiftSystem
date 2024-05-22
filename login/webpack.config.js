@@ -34,6 +34,7 @@ module.exports = (_, argv) => ({
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
+          options: { presets: ["@babel/preset-react"] }
         },
       },{
         test: /\.(jpg|png|svg)$/,
@@ -51,7 +52,9 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "login",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        navbar: "navbar@http://localhost:3003/remoteEntry.js"
+      },
       exposes: {
         "./Login": "./src/components/Login",
       },

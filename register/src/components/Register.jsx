@@ -22,8 +22,20 @@ const Register = () => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData);
+        e.preventDefault();  
+        console.log(formData)
+        fetch('http://localhost:2000/register',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        }).then(response => response.json())
+        .then(result => {
+            console.log(result.adress)
+        }).catch(error => {
+            console.log(error)
+        })
     };
 
     return (

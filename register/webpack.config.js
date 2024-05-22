@@ -44,7 +44,9 @@ module.exports = (_, argv) => ({
       name: "register",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./Register": "./src/components/Register.jsx"
+      },
       shared: {
         ...deps,
         react: {

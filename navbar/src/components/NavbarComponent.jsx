@@ -13,8 +13,8 @@ function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as = {NavLink} to = {"/Counter"}>Contador</Nav.Link>
-            <Nav.Link as = {NavLink} to = {"/Galery"}>Galeria</Nav.Link>
+            <Nav.Link as = {NavLink} to = {"/Login"}>Login</Nav.Link>
+            <Nav.Link as = {NavLink} to = {"/register"}>Galeria</Nav.Link>
             <Nav.Link as = {NavLink} to = {"/About"}>About</Nav.Link>
           </Nav>
         </Navbar.Collapse>

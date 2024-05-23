@@ -9,10 +9,18 @@ const ShiftTable = () => {
 
   useEffect(() => {
     const fetchShifts = async () => {
-      const response = await fetch("/shifts.json");
-      const data = await response.json();
-      setShifts(data);
+      try {
+        const response = await fetch("/shifts.json"); // Ajusta la URL según tu API o archivo JSON
+        if (!response.ok) {
+          throw new Error("Error fetching shifts");
+        }
+        const data = await response.json();
+        setShifts(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
+
     fetchShifts();
   }, []);
 

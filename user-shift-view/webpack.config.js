@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath: "http://localhost:3005/",
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 3000,
+    port: 3005,
     historyApiFallback: true,
   },
 
@@ -36,21 +36,26 @@ module.exports = (_, argv) => ({
           loader: "babel-loader",
           options: { presets: ["@babel/preset-react"] }
         },
-      },
+      },{
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 25000
+          }
+        }
+      }
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "host",
+      name: "userShift",
       filename: "remoteEntry.js",
-      remotes: {
-        navbar: "navbar@http://localhost:3003/remoteEntry.js",
-        login: "login@http://localhost:3001/remoteEntry.js",
-        register: "register@http://localhost:3002/remoteEntry.js",
-        userShift: "userShift@http://localhost:3005/remoteEntry.js"
+      remotes: {},
+      exposes: {
+        "./Login": "./src/components/CurrentShift",
       },
-      exposes: {},
       shared: {
         ...deps,
         react: {

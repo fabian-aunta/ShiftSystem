@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Navbar = React.lazy(() => import("navbar/Navbar"));
 const Login = React.lazy(() => import("login/Login"));
 const Register = React.lazy(() => import("register/Register"));
-
-import "./index.css";
 
 function parseJwt (token) {
   const base64Url = token.split('.')[1];
@@ -23,9 +23,11 @@ let tokenExistAndStillValid = (parseJwt(localStorage.getItem('login')).exp * 100
 const App = () => (
   <React.Suspense fallback="Loading...">
     <BrowserRouter>
-      <>{tokenExistAndStillValid ? <Navbar /> : <Login /> }</>
+      <>{tokenExistAndStillValid ?
+      <> <Navbar />
+      </> : <Login /> }</>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Navbar />} />
         <Route path="/register" element={<Register />} />
         {/* Otras rutas pueden ser agregadas aquí */}
       </Routes>

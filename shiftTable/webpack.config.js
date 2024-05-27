@@ -44,7 +44,9 @@ module.exports = (_, argv) => ({
       name: "shiftTable",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./ShiftTable": "./src/components/ShiftTable.jsx"
+      },
       shared: {
         ...deps,
         react: {

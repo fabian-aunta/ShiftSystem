@@ -32,10 +32,8 @@ function NavbarComponent() {
           <Nav.Link href="#features" className="custom-text">Features</Nav.Link>
           <Nav.Link href="#pricing" className="custom-text">Pricing</Nav.Link>
           <NavDropdown title={<span style={{ color: 'white' }}>Turnos</span>} id="collapsible-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1" >Mis Turnos</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Lista de Turnos
-            </NavDropdown.Item>
+            <NavDropdown.Item as = {NavLink} to = {"/turn"} >Mis Turnos</NavDropdown.Item>
+            <NavDropdown.Item as = {NavLink} to = {"/listTurn"}>Lista de Turnos</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.4">
               Cancelar Turno

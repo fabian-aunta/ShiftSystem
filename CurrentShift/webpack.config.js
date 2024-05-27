@@ -44,7 +44,9 @@ module.exports = (_, argv) => ({
       name: "CurrentShift",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        "./CurrentShift": "./src/components/CurrentShift.jsx"
+      },
       shared: {
         ...deps,
         react: {

@@ -34,41 +34,44 @@ const ShiftTable = () => {
 
   return (
     <div className="shift-table-container">
-      <h1>Próximos Turnos</h1>
-      <table className="shift-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Empleado</th>
-            <th>Fecha</th>
-            <th>Hora de Inicio</th>
-            <th>Hora de Fin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentShifts.map((shift) => (
-            <tr key={shift.id}>
-              <td>{shift.id}</td>
-              <td>{shift.employee}</td>
-              <td>{shift.date}</td>
-              <td>{shift.startTime}</td>
-              <td>{shift.endTime}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <ReactPaginate
-        previousLabel={"Anterior"}
-        nextLabel={"Siguiente"}
-        breakLabel={"..."}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        activeClassName={"active"}
-      />
+    <div className="header-container">
+      <h1>Listado de Turnos</h1>
+      <button className="add-button">Agregar</button>
     </div>
+    <table className="shift-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Empleado</th>
+          <th>Fecha</th>
+          <th>Hora de Inicio</th>
+          <th>Hora de Fin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentShifts.map((shift) => (
+          <tr key={shift.id}>
+            <td>{shift.id}</td>
+            <td>{shift.employee}</td>
+            <td>{shift.date}</td>
+            <td>{shift.startTime}</td>
+            <td>{shift.endTime}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <ReactPaginate
+      previousLabel={"Anterior"}
+      nextLabel={"Siguiente"}
+      breakLabel={"..."}
+      pageCount={pageCount}
+      marginPagesDisplayed={2}
+      pageRangeDisplayed={3}
+      onPageChange={handlePageClick}
+      containerClassName={"pagination"}
+      activeClassName={"active"}
+    />
+  </div>
   );
 };
 

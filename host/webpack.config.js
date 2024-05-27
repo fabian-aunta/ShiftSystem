@@ -48,7 +48,9 @@ module.exports = (_, argv) => ({
         navbar: "navbar@http://localhost:3003/remoteEntry.js",
         login: "login@http://localhost:3001/remoteEntry.js",
         register: "register@http://localhost:3002/remoteEntry.js",
-        userShift: "userShift@http://localhost:3005/remoteEntry.js"
+        currentShift: "CurrentShift@http://localhost:3005/remoteEntry.js",
+        shiftTable: "shiftTable@http://localhost:3006/remoteEntry.js"
+
       },
       exposes: {},
       shared: {

@@ -6,17 +6,22 @@ const CurrentShift = () => {
 
   useEffect(() => {
     const fetchCurrentShift = async () => {
-      try {
-        const response = await fetch("/current-shift.json"); // Asegúrate de que esta ruta es correcta
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        console.log("Fetched data:", data); // Añade esta línea para depuración
-        setCurrentShift(data);
-      } catch (error) {
-        console.error("Error fetching current shift:", error);
-      }
+      const data = localStorage.getItem('login');
+      console.log(data);
+      fetch('http://localhost:2000/turno',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({data}),
+        mode:'no-cors'
+      }).then(response => response.json())
+      .then(result => {
+        setCurrentShift(result);
+      }).catch(error => {
+          console.log(error)
+      })
+
     };
 
     fetchCurrentShift();

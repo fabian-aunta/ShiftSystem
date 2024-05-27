@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Navbar = React.lazy(() => import("navbar/Navbar"));
 const Login = React.lazy(() => import("login/Login"));
 const Register = React.lazy(() => import("register/Register"));
+const CurrentShift = React.lazy(() => import("currentShift/CurrentShift"));
+const ShiftTable = React.lazy(() => import("shiftTable/ShiftTable"));
+
+
 
 function parseJwt (token) {
   const base64Url = token.split('.')[1];
@@ -23,13 +27,12 @@ let tokenExistAndStillValid = (parseJwt(localStorage.getItem('login')).exp * 100
 const App = () => (
   <React.Suspense fallback="Loading...">
     <BrowserRouter>
-      <>{tokenExistAndStillValid ?
-      <> <Navbar />
-      </> : <Login /> }</>
+      <>{tokenExistAndStillValid ?<Navbar/> : <Login/>}</>
       <Routes>
-        <Route path="/login" element={<Navbar />} />
-        <Route path="/register" element={<Register />} />
-        {/* Otras rutas pueden ser agregadas aquí */}
+        <Route path="/login" element={<CurrentShift />} />
+        <Route path="/register" element={<Register />}/>
+        <Route path="/listTurn" element={<ShiftTable />}/>
+        <Route path="/turn" element={<CurrentShift/>}/>
       </Routes>
     </BrowserRouter>
   </React.Suspense>

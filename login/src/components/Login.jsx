@@ -8,7 +8,7 @@ import twiter from "../icons/gorjeo.png";
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();  // Añadido useNavigate
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ const Login = () => {
             if (result.token) {
               console.log(result.token);
               localStorage.setItem('login', result.token);
-              navigate('/navbar');  // Redirigir al usuario a la ruta que solo contiene el Navbar
+              navigate('/listTurn'); 
             }
           }).catch(error => {
             console.log(error);

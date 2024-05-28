@@ -1,7 +1,11 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './WelcomeCard.css';
 
-const WelcomeCard = ({ userName, turnNumber }) => {
+const WelcomeCard = () => {
+    const location = useLocation();
+    const { userName, turnNumber } = location.state || {};
+
     return (
         <div className="card-container welcome-card">
             <h1>Hola {userName}</h1>

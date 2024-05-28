@@ -7,26 +7,46 @@ const ShiftTable = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const shiftsPerPage = 5; // Número de turnos por página
 
-  useEffect(() => {
-    const fetchShifts = async () => {
-      try {
-        const response = await fetch("http://localhost:2000/api/shifts/queue", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('login')}`
-          }
-        }); // Ajusta la URL según tu API
-        if (!response.ok) {
-          throw new Error("Error fetching shifts");
+  const fetchShifts = async () => {
+    try {
+      const response = await fetch("http://localhost:2000/api/shifts/queue", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('login')}`
         }
-        const data = await response.json();
-        setShifts(data.shifts);
-      } catch (error) {
-        console.error(error);
+      });
+      if (!response.ok) {
+        throw new Error("Error fetching shifts");
       }
-    };
+      const data = await response.json();
+      setShifts(data.shifts);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
     fetchShifts();
   }, []);
+
+  const handlePassTurn = async () => {
+    try {
+      const response = await fetch('http://localhost:2000/api/shifts/pass', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('login')}`
+        }
+      });
+      if (response.ok) {
+        const result = await response.json();
+        fetchShifts(); // Refresh the list of shifts
+      } else {
+        console.error('Error al pasar turno');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
@@ -40,7 +60,7 @@ const ShiftTable = () => {
     <div className="shift-table-container">
       <div className="header-container">
         <h1>Listado de Turnos</h1>
-        <button className="add-button">Agregar</button>
+        <button className="pass-turn-button" onClick={handlePassTurn}>Pasar Turno</button>
       </div>
       <table className="shift-table">
         <thead>

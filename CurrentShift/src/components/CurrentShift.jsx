@@ -42,7 +42,7 @@ const CurrentShift = () => {
       }
 
       const result = await response.json();
-      navigate('/welcome', { state: { userName: `${result.shift.assignedTo.fullName}`, turnNumber: result.shift.turnNumber } });
+      navigate('/welcome', { state: { userName: result.shift.assignedTo.fullName, turnNumber: result.shift.turnNumber } });
     } catch (error) {
       console.error(error);
       alert("Error assigning shift");

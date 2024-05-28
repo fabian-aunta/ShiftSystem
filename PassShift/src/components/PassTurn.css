@@ -1,0 +1,30 @@
+.pass-turn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.shift-details {
+    background-color: #006666;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+button {
+    background: #007bff;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    font-size: 18px;
+    border: none;
+    margin-top: 20px;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

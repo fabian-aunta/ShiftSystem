@@ -93,3 +93,14 @@ button:hover {
     width: 30px; /* Asegúrate de que los íconos tengan un tamaño adecuado */
     height: 30px;
 }
+
+
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  

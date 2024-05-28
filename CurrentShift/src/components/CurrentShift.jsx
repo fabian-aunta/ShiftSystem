@@ -6,6 +6,7 @@ const CurrentShift = () => {
   const [priority, setPriority] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const CurrentShift = () => {
   const handleAssignShift = async (e) => {
     e.preventDefault();
     const endpoint = isAdmin ? "admin-assign" : "assign";
-    const body = isAdmin ? { email: user.email, priority } : { priority };
+    const body = isAdmin ? { email, priority } : { priority };
 
     try {
       const response = await fetch(`http://localhost:2000/api/shifts/${endpoint}`, {
@@ -68,7 +69,12 @@ const CurrentShift = () => {
         {isAdmin && (
           <label>
             Correo Electrónico del Usuario:
-            <input type="email" value={user?.email || ''} readOnly />
+            <input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
           </label>
         )}
         <button type="submit">Asignar Turno</button>

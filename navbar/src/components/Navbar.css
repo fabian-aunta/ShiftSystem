@@ -6,3 +6,16 @@
 .custom-text {
     color: white; /* Cambia a tu color preferido */
 }
+
+
+.close-button-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .close-button-text {
+    color: white;
+    margin-right: 5px;
+  }
+  

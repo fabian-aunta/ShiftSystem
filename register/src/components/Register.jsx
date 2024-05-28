@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
 const Register = () => {
@@ -12,6 +13,7 @@ const Register = () => {
         address: "",
         termsAccepted: false,
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -23,7 +25,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();  
-        fetch('http://localhost:2000/api/auth/register', { // Asegúrate de que esta URL coincida con tu backend
+        fetch('https://8eaa-2800-e2-ba80-cc5-2808-dd64-13a5-2493.ngrok-free.app/api/auth/register', { // Asegúrate de que esta URL coincida con tu backend
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,6 +46,7 @@ const Register = () => {
                     address: "",
                     termsAccepted: false,
                 });
+                navigate('/login');
             } else {
                 alert("Error al registrar usuario");
             }

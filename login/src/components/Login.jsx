@@ -17,7 +17,7 @@ const Login = () => {
           password: password
         };
       
-        fetch('http://localhost:2000/api/auth/login', {
+        fetch('https://8eaa-2800-e2-ba80-cc5-2808-dd64-13a5-2493.ngrok-free.app/api/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

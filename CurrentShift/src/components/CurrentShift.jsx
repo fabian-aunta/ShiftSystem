@@ -29,7 +29,7 @@ const CurrentShift = () => {
     const body = isAdmin ? { email, priority } : { priority };
 
     try {
-      const response = await fetch(`http://localhost:2000/api/shifts/${endpoint}`, {
+      const response = await fetch(`https://8eaa-2800-e2-ba80-cc5-2808-dd64-13a5-2493.ngrok-free.app/api/shifts/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

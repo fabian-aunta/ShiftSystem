@@ -9,15 +9,23 @@ const ShiftTable = () => {
 
   const fetchShifts = async () => {
     try {
-      const response = await fetch("http://localhost:2000/api/shifts/queue", {
+      const token = localStorage.getItem('login');
+      console.log('Authorization Token:', token);
+
+      const response = await fetch("https://8eaa-2800-e2-ba80-cc5-2808-dd64-13a5-2493.ngrok-free.app/api/shifts/queue", {
+        method: 'POST', // Asegúrate de especificar el método
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('login')}`
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
         }
       });
+
       if (!response.ok) {
         throw new Error("Error fetching shifts");
       }
+
       const data = await response.json();
+      console.log('Response data:', data);
       setShifts(data.shifts);
     } catch (error) {
       console.error(error);
@@ -30,11 +38,13 @@ const ShiftTable = () => {
 
   const handlePassTurn = async () => {
     try {
-      const response = await fetch('http://localhost:2000/api/shifts/pass', {
+      const token = localStorage.getItem('login');
+
+      const response = await fetch('https://8eaa-2800-e2-ba80-cc5-2808-dd64-13a5-2493.ngrok-free.app/api/shifts/pass', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('login')}`
+          Authorization: `Bearer ${token}`
         }
       });
       if (response.ok) {

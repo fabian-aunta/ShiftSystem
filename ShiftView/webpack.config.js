@@ -1,10 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
 
-module.exports = {
+module.exports = (_, argv) => ({
   output: {
-    publicPath: "http://localhost:3001/", 
+    publicPath: "http://localhost:3007/",
   },
 
   resolve: {
@@ -12,10 +13,10 @@ module.exports = {
   },
 
   devServer: {
-    port: 3001,
+    port: 3007,
     historyApiFallback: true,
   },
-  
+
   module: {
     rules: [
       {
@@ -34,48 +35,40 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          options: { presets: ["@babel/preset-react"] }
         },
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
       },
     ],
   },
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "login",  // Cambia el nombre según el microfrontend
+      name: "welcomeCard",
       filename: "remoteEntry.js",
       exposes: {
-        "./Login": "./src/components/Login.jsx",  // Cambia según el componente
+        "./WelcomeCard": "./src/components/WelcomeCard.jsx"
       },
       shared: {
         ...deps,
         react: {
           singleton: true,
-          requiredVersion: deps.react,
           eager: true,
+          requiredVersion: deps.react,
         },
         "react-dom": {
           singleton: true,
-          requiredVersion: deps["react-dom"],
           eager: true,
+          requiredVersion: deps["react-dom"],
         },
         "react-router-dom": {
           singleton: true,
-          requiredVersion: deps["react-router-dom"],
           eager: true,
+          requiredVersion: deps["react-router-dom"],
         },
       },
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
     }),
+    new Dotenv()
   ],
-};
+});

@@ -1,38 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import NavbarComponent from "navbar/Navbar";
+import Login from "login/Login";
+import Register from "register/Register";
+import CurrentShift from "currentShift/CurrentShift";
+import ShiftTable from "shiftTable/ShiftTable";
+import WelcomeCard from "welcomeCard/WelcomeCard";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-const Navbar = React.lazy(() => import("navbar/Navbar"));
-const Login = React.lazy(() => import("login/Login"));
-const Register = React.lazy(() => import("register/Register"));
-const CurrentShift = React.lazy(() => import("currentShift/CurrentShift"));
-const ShiftTable = React.lazy(() => import("shiftTable/ShiftTable"));
-
-
-
-function parseJwt (token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-  }).join(''));
-
-  return JSON.parse(jsonPayload);
-}
-
-let tokenExistAndStillValid = (parseJwt(localStorage.getItem('login')).exp * 1000 > Date.now());
 
 const App = () => (
   <React.Suspense fallback="Loading...">
     <BrowserRouter>
-      <>{tokenExistAndStillValid ?<Navbar/> : <Login/>}</>
       <Routes>
-        <Route path="/login" element={<CurrentShift />} />
-        <Route path="/register" element={<Register />}/>
-        <Route path="/listTurn" element={<ShiftTable />}/>
-        <Route path="/turn" element={<CurrentShift/>}/>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/listTurn" element={<ShiftTable />} />
+          <Route path="/turn" element={<CurrentShift />} />
+          <Route path="/welcome" element={<WelcomeCard />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.Suspense>

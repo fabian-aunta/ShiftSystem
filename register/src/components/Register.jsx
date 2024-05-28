@@ -9,7 +9,7 @@ const Register = () => {
         documentNumber: "",
         password: "",
         email: "",
-        adress: "",
+        address: "",
         termsAccepted: false,
     });
 
@@ -23,8 +23,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();  
-        console.log(formData)
-        fetch('http://localhost:2000/register',{
+        fetch('http://localhost:2000/api/auth/register', { // Asegúrate de que esta URL coincida con tu backend
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,17 +31,33 @@ const Register = () => {
             body: JSON.stringify(formData)
         }).then(response => response.json())
         .then(result => {
-            console.log(result.adress)
+            if(result.message) {
+                alert(result.message);
+                // Redirigir a la página de login o limpiar el formulario
+                setFormData({
+                    org: "",
+                    firstName: "",
+                    lastName: "",
+                    documentNumber: "",
+                    password: "",
+                    email: "",
+                    address: "",
+                    termsAccepted: false,
+                });
+            } else {
+                alert("Error al registrar usuario");
+            }
         }).catch(error => {
-            console.log(error)
-        })
+            console.error("Error:", error);
+            alert("Error al registrar usuario");
+        });
     };
 
     return (
         <div className="register">
             <form onSubmit={handleSubmit} className="register-form">
                 <h1>Registrarse</h1>
-                <label htmlFor="username">Organización:</label>
+                <label htmlFor="org">Organización:</label>
                 <input type="text" name="org" value={formData.org} onChange={handleChange} required />
 
                 <label htmlFor="firstName">Nombres:</label>
@@ -60,8 +75,8 @@ const Register = () => {
                 <label htmlFor="email">Correo Electrónico:</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-                <label htmlFor="adress">Dirección:</label>
-                <input type="text" name="adress" value={formData.adress} onChange={handleChange} required />
+                <label htmlFor="address">Dirección:</label>
+                <input type="text" name="address" value={formData.address} onChange={handleChange} required />
 
                 <label htmlFor="termsAccepted">
                     <input type="checkbox" name="termsAccepted" checked={formData.termsAccepted} onChange={handleChange} required />

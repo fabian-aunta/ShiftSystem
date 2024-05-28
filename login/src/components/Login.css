@@ -57,7 +57,6 @@ input {
     color: white;
 }
 
-
 button {
     background: #007bff;
     height: 40px;
@@ -70,10 +69,15 @@ button {
     color: white;
 }
 
+button:hover {
+    background-color: #0056b3; /* Color del botón al pasar el ratón */
+}
+
 .login-link {
     text-align: center;
     margin-top: 10px;
 }
+
 .login-link a {
     color: #007bff;
     text-decoration: none;
@@ -86,5 +90,6 @@ button {
 .login-link img {
     border: none;
     margin: 10px;
+    width: 30px; /* Asegúrate de que los íconos tengan un tamaño adecuado */
+    height: 30px;
 }
-

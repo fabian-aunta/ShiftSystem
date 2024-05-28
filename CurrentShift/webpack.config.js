@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const Dotenv = require('dotenv-webpack');
 const deps = require("./package.json").dependencies;
+
 module.exports = (_, argv) => ({
   output: {
     publicPath: "http://localhost:3005/",
@@ -41,9 +42,8 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "CurrentShift",
+      name: "currentShift",
       filename: "remoteEntry.js",
-      remotes: {},
       exposes: {
         "./CurrentShift": "./src/components/CurrentShift.jsx"
       },
@@ -51,11 +51,18 @@ module.exports = (_, argv) => ({
         ...deps,
         react: {
           singleton: true,
+          eager: true,
           requiredVersion: deps.react,
         },
         "react-dom": {
           singleton: true,
+          eager: true,
           requiredVersion: deps["react-dom"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          eager: true,
+          requiredVersion: deps["react-router-dom"],
         },
       },
     }),

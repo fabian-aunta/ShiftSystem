@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import Login from "./components/Login";
-
-import "./index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
-  <>
-    <Login/>
-  </>
+  <BrowserRouter>
+    <Login />
+  </BrowserRouter>
 );
-ReactDOM.createRoot(document.getElementById("app")).render(<App />);
+
+export default App; // Asegúrate de que esta línea está presente
